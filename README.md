@@ -37,7 +37,7 @@ eventIdFile: /home/pipeline/shotgunEventDaemon/shotgunEventDaemon.id
 logPath: /home/pipeline/shotgunEventDaemon/logs
 
 [shotgun]
-server: http://sg-staging.ds.com/
+server: http://yourshotgunurl.com/
 name: sg_event_deamon
 key: xxxxxxxxxxxxxxxxxxxx
 
