@@ -51,6 +51,12 @@ docker run -d --rm -v /home/pipeline/shotgunEventDaemon:/home/pipeline/shotgunEv
 ```
 - Docker Compose (Service Part)
 ```
+#- docker-compose.yaml
+
+version: '3'
+
+services:
+
     shotgun-event:
         container_name: ShotgunEvent
 
@@ -70,4 +76,7 @@ docker run -d --rm -v /home/pipeline/shotgunEventDaemon:/home/pipeline/shotgunEv
 
         entrypoint: ["python", "shotgunEventDaemon.py", "foreground"]
 
+```
+```
+docker-compose up -d shotgun-event
 ```
