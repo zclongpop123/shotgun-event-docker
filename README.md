@@ -45,7 +45,7 @@ paths: /home/pipeline/shotgunEvents/plugins
 
 - Docker Use
 ```
-docker run -d --rm -v /home/pipeline/shotgunEvents:/home/pipeline/shotgunEvents -v "$PWD":/usr/src/myapp -w /usr/src/myapp shotgun-event python shotgunEventDaemon.py  foreground
+docker run -d --rm -v /home/pipeline/shotgunEvents:/usr/src/app -w /usr/src/myapp/src shotgun-event python shotgunEventDaemon.py  foreground
 
 ```
 - Docker Compose (Service Part)
