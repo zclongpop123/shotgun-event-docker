@@ -15,43 +15,37 @@ cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' > /e
 ```
 - Source Repo (shotgun events and your configs like this)
 ```
-/home/pipeline/shotgunEventDaemon
-.
-├── logs
-│   └── shotgunEventDaemon
-├── plugins
-├── shotgunEventDaemon.id
-└── shotgunEvents
-    ├── LICENSE
-    ├── README.mkd
-    └── src
-        ├── daemonizer.py
-        ├── daemonizer.pyc
-        ├── examplePlugins
-        ├── shotgunEventDaemon.conf
-        └── shotgunEventDaemon.py
-
+/home/pipeline/shotgunEvents
+    ├── logs
+    ├── plugins
+    ├── src
+    └── site-packages
 ```
-
 - Change shotgunEventDaemon.conf
 ```
 # shotgunEventDaemon.conf
 [daemon]
-pidFile: /home/pipeline/shotgunEventDaemon/shotgunEventDaemon.pid
-eventIdFile: /home/pipeline/shotgunEventDaemon/shotgunEventDaemon.id
-logPath: /home/pipeline/shotgunEventDaemon/logs
+pidFile: /home/pipeline/shotgunEvents/shotgunEventDaemon.pid
+
+eventIdFile: /home/pipeline/shotgunEvents/shotgunEventDaemon.id
+
+logPath: /home/pipeline/shotgunEvents/logs
 
 [shotgun]
 server: http://yourshotgunurl.com/
+
 name: sg_event_deamon
+
 key: xxxxxxxxxxxxxxxxxxxx
 
+
 [plugins]
-paths: /home/pipeline/shotgunEventDaemon/plugins
+paths: /home/pipeline/shotgunEvents/plugins
 ```
+
 - Docker Use
 ```
-docker run -d --rm -v /home/pipeline/shotgunEventDaemon:/home/pipeline/shotgunEventDaemon -v "$PWD":/usr/src/myapp -w /usr/src/myapp shotgun-event python shotgunEventDaemon.py  foreground
+docker run -d --rm -v /home/pipeline/shotgunEvents:/home/pipeline/shotgunEvents -v "$PWD":/usr/src/myapp -w /usr/src/myapp shotgun-event python shotgunEventDaemon.py  foreground
 
 ```
 - Docker Compose (Service Part)
@@ -63,23 +57,21 @@ version: '3'
 services:
 
     shotgun-event:
-        container_name: ShotgunEvent
+        container_name: Shotgun-Event
 
         image: shotgun-event
         restart: unless-stopped
 
+        networks:
+            - extnetwork
 
-        #networks:
-        #    extnetwork:
-        #        ipv4_address: 172.20.0.14
+        environment:
+            PYTHONPATH: /usr/src/app/site-packages
 
         volumes:
-            - /home/pipeline/shotgunEventDaemon:/home/pipeline/shotgunEventDaemon
-            - /home/pipeline/shotgunEventDaemon/shotgunEvents/src/:/usr/src/myapp
+            - /home/pipeline/shotgunEvents:/usr/src/app
 
-        working_dir: /usr/src/myapp
-
-        entrypoint: ["python", "shotgunEventDaemon.py", "foreground"]
+        entrypoint: ["python", "/usr/src/app/src/shotgunEventDaemon.py", "foreground"]
 
 ```
 ```
