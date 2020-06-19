@@ -7,7 +7,12 @@ git clone https://github.com/zclongpop123/shotgun-event-docker.git
 ```
 docker build -t shotgun-event .
 ```
+- Change Timezone
+```
+apk add tzdata --repository http://mirrors.ustc.edu.cn/alpine/v3.4/main/
 
+cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' > /etc/timezone
+```
 - Source Repo (shotgun events and your configs like this)
 ```
 /home/pipeline/shotgunEventDaemon
