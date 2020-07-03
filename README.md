@@ -7,15 +7,10 @@ git clone https://github.com/zclongpop123/shotgun-event-docker.git
 ```
 docker build -t shotgun-event .
 ```
-- Change Timezone
-```
-apk add tzdata --repository http://mirrors.ustc.edu.cn/alpine/v3.4/main/
 
-cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' > /etc/timezone
-```
 - Source Repo (shotgun events and your configs like this)
 ```
-/home/pipeline/shotgunEvents
+/opt/shotgunEvents
     ├── logs
     ├── plugins
     ├── src
@@ -25,11 +20,11 @@ cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' > /e
 ```
 # shotgunEventDaemon.conf
 [daemon]
-pidFile: /home/pipeline/shotgunEvents/shotgunEventDaemon.pid
+pidFile: /opt/shotgunEvents/shotgunEventDaemon.pid
 
-eventIdFile: /home/pipeline/shotgunEvents/shotgunEventDaemon.id
+eventIdFile: /opt/shotgunEvents/shotgunEventDaemon.id
 
-logPath: /home/pipeline/shotgunEvents/logs
+logPath: /opt/shotgunEvents/logs
 
 [shotgun]
 server: http://yourshotgunurl.com/
@@ -40,12 +35,12 @@ key: xxxxxxxxxxxxxxxxxxxx
 
 
 [plugins]
-paths: /home/pipeline/shotgunEvents/plugins
+paths: /opt/shotgunEvents/plugins
 ```
 
 - Docker Use
 ```
-docker run -d --rm -v /home/pipeline/shotgunEvents:/usr/src/app -w /usr/src/myapp/src shotgun-event python shotgunEventDaemon.py  foreground
+docker run -d --rm -v /opt/shotgunEvents:/opt/shotgunEvents -w /opt/shotgunEvents/src shotgun-event python shotgunEventDaemon.py  foreground
 
 ```
 - Docker Compose (Service Part)
@@ -71,7 +66,7 @@ services:
         volumes:
             - /home/pipeline/shotgunEvents:/usr/src/app
 
-        entrypoint: ["python", "/usr/src/app/src/shotgunEventDaemon.py", "foreground"]
+        entrypoint: ["python", "shotgunEventDaemon.py", "foreground"]
 
 ```
 ```
