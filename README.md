@@ -61,10 +61,10 @@ services:
             - extnetwork
 
         environment:
-            PYTHONPATH: /usr/src/app/site-packages
+            PYTHONPATH: /opt/shotgunEvents/site-packages
 
         volumes:
-            - /home/pipeline/shotgunEvents:/usr/src/app
+            - /opt/shotgunEvents:/opt/shotgunEvents
 
         entrypoint: ["python", "shotgunEventDaemon.py", "foreground"]
 
