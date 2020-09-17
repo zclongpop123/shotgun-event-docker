@@ -65,6 +65,7 @@ services:
 
         volumes:
             - /usr/src/app/shotgunEvents/shotgunEventDaemon.conf:/usr/src/app/shotgunEvents/plugins/shotgunEventDaemon.conf
+            - /usr/src/app/shotgunEvents/site-packages:/usr/src/app/shotgunEvents/plugins/site-packages
             - /usr/src/app/shotgunEvents/plugins:/usr/src/app/shotgunEvents/plugins
             - /usr/src/app/shotgunEvents/logs:/usr/src/app/shotgunEvents/logs
 
