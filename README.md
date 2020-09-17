@@ -64,6 +64,7 @@ services:
             PYTHONPATH: /usr/src/app/shotgunEvents/site-packages
 
         volumes:
+            - /usr/src/app/shotgunEvents/shotgunEventDaemon.conf:/usr/src/app/shotgunEvents/plugins/shotgunEventDaemon.conf
             - /usr/src/app/shotgunEvents/plugins:/usr/src/app/shotgunEvents/plugins
             - /usr/src/app/shotgunEvents/logs:/usr/src/app/shotgunEvents/logs
 
