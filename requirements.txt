@@ -1,0 +1,3 @@
+six
+pytz
+git+https://gitee.com/zclongpop123/python-api.git
