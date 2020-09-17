@@ -10,7 +10,7 @@ docker build -t shotgun-event .
 
 - Source Repo (shotgun events and your configs like this)
 ```
-/opt/shotgunEvents
+/usr/src/app/shotgunEvents
     ├── logs
     ├── plugins
     ├── src
@@ -20,11 +20,11 @@ docker build -t shotgun-event .
 ```
 # shotgunEventDaemon.conf
 [daemon]
-pidFile: /opt/shotgunEvents/shotgunEventDaemon.pid
+pidFile: /usr/src/app/shotgunEvents/shotgunEventDaemon.pid
 
-eventIdFile: /opt/shotgunEvents/shotgunEventDaemon.id
+eventIdFile: /usr/src/app/shotgunEvents/shotgunEventDaemon.id
 
-logPath: /opt/shotgunEvents/logs
+logPath: /usr/src/app/shotgunEvents/logs
 
 [shotgun]
 server: http://yourshotgunurl.com/
@@ -35,12 +35,12 @@ key: xxxxxxxxxxxxxxxxxxxx
 
 
 [plugins]
-paths: /opt/shotgunEvents/plugins
+paths: /usr/src/app/shotgunEvents/plugins
 ```
 
 - Docker Use
 ```
-docker run -d --rm -v /opt/shotgunEvents:/opt/shotgunEvents -w /opt/shotgunEvents/src shotgun-event python shotgunEventDaemon.py  foreground
+docker run -d --rm -v /usr/src/app/shotgunEvents/logs:/usr/src/app/shotgunEvents/logs -w /usr/src/app/shotgunEvents/src shotgun-event python shotgunEventDaemon.py foreground
 
 ```
 - Docker Compose (Service Part)
@@ -61,12 +61,13 @@ services:
             - extnetwork
 
         environment:
-            PYTHONPATH: /opt/shotgunEvents/site-packages
+            PYTHONPATH: /usr/src/app/shotgunEvents/site-packages
 
         volumes:
-            - /opt/shotgunEvents:/opt/shotgunEvents
+            - /usr/src/app/shotgunEvents/plugins:/usr/src/app/shotgunEvents/plugins
+            - /usr/src/app/shotgunEvents/logs:/usr/src/app/shotgunEvents/logs
 
-        entrypoint: ["python", "shotgunEventDaemon.py", "foreground"]
+        entrypoint: ["python", "./shotgunEvents/src/shotgunEventDaemon.py", "foreground"]
 
 ```
 ```
