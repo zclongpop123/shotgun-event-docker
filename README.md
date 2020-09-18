@@ -12,9 +12,9 @@ docker build -t shotgun-event .
 ```
 /usr/src/app
     ├── shotgunEvents
-            ├── logs
-            ├── plugins
-            └── src
+    |       ├── logs
+    |       ├── plugins
+    |       └── src
     └── site-packages
 ```
 - Change shotgunEventDaemon.conf
