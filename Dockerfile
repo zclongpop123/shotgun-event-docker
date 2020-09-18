@@ -15,7 +15,8 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/re
     
     pip install -r requirements.txt --no-cache-dir &&\
     
-    git clone https://gitee.com/zclongpop123/shotgunEvents.git
+    git clone https://gitee.com/zclongpop123/shotgunEvents.git &&\
+    rm -rf ./shotgunEvents/.git
 
 
 CMD ["python", "./shotgunEvents/src/shotgunEventDaemon.py", "foreground"]
