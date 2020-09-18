@@ -1,4 +1,4 @@
-# How To Use
+# Introduction
 - Clone this repo
 ```
 git clone https://github.com/zclongpop123/shotgun-event-docker.git
