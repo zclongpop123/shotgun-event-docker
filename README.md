@@ -53,7 +53,7 @@ services:
         restart: unless-stopped
 
         environment:
-            PYTHONPATH: /usr/src/app/shotgunEvents/site-packages
+            PYTHONPATH: /usr/src/app/site-packages
 
         volumes:
             - /home/shotgunEvents/shotgunEventDaemon.conf:/usr/src/app/shotgunEvents/src/shotgunEventDaemon.conf
