@@ -38,11 +38,6 @@ key: xxxxxxxxxxxxxxxxxxxx
 paths: /usr/src/app/shotgunEvents/plugins
 ```
 
-- Docker Use
-```
-docker run -d --rm -v /usr/src/app/shotgunEvents/logs:/usr/src/app/shotgunEvents/logs -w /usr/src/app/shotgunEvents/src shotgun-event python shotgunEventDaemon.py foreground
-
-```
 - Docker Compose (Service Part)
 ```
 #- docker-compose.yaml
