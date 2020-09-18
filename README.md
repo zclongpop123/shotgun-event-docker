@@ -57,9 +57,6 @@ services:
         image: shotgun-event
         restart: unless-stopped
 
-        networks:
-            - extnetwork
-
         environment:
             PYTHONPATH: /usr/src/app/shotgunEvents/site-packages
 
