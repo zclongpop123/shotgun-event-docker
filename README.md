@@ -64,13 +64,10 @@ services:
             PYTHONPATH: /usr/src/app/shotgunEvents/site-packages
 
         volumes:
-            - /usr/src/app/shotgunEvents/shotgunEventDaemon.conf:/usr/src/app/shotgunEvents/plugins/shotgunEventDaemon.conf
-            - /usr/src/app/shotgunEvents/site-packages:/usr/src/app/shotgunEvents/plugins/site-packages
-            - /usr/src/app/shotgunEvents/plugins:/usr/src/app/shotgunEvents/plugins
-            - /usr/src/app/shotgunEvents/logs:/usr/src/app/shotgunEvents/logs
-
-        entrypoint: ["python", "./shotgunEvents/src/shotgunEventDaemon.py", "foreground"]
-
+            - /home/shotgunEvents/shotgunEventDaemon.conf:/usr/src/app/shotgunEvents/src/shotgunEventDaemon.conf
+            - /home/shotgunEvents/site-packages:/usr/src/app/site-packages
+            - /home/shotgunEvents/plugins:/usr/src/app/shotgunEvents/plugins
+            - /home/shotgunEvents/logs:/usr/src/app/shotgunEvents/logs
 ```
 ```
 docker-compose up -d shotgun-event
