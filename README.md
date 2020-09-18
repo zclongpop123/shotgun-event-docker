@@ -10,10 +10,11 @@ docker build -t shotgun-event .
 
 - Source Repo (shotgun events and your configs like this)
 ```
-/usr/src/app/shotgunEvents
-    ├── logs
-    ├── plugins
-    ├── src
+/usr/src/app
+    ├── shotgunEvents
+            ├── logs
+            ├── plugins
+            └── src
     └── site-packages
 ```
 - Change shotgunEventDaemon.conf
