@@ -10,12 +10,10 @@ WORKDIR /usr/src/app
 COPY requirements.txt ./
 
 
-RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories &&\
-    apk add --no-cache git tzdata &&\
-    
+RUN apk add --no-cache git tzdata &&\
     pip install -r requirements.txt --no-cache-dir &&\
     
-    git clone https://gitee.com/zclongpop123/shotgunEvents.git &&\
+    git clone https://github.com/shotgunsoftware/shotgunEvents.git &&\
     rm -rf ./shotgunEvents/.git &&\
 
     apk del git
